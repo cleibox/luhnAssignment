@@ -80,4 +80,10 @@ class CustomerSystem{
     /*******************************************************************
     *       ADDITIONAL METHODS MAY BE ADDED BELOW IF NECESSARY         *
     *******************************************************************/
+	
+	    public static int getStreetNum(String address, int loc){
+        String streetNum = address.substring(0, loc);
+        int num = Integer.parseInt(streetNum);
+        return num;
+    }
 }
