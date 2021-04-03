@@ -1,5 +1,5 @@
 // Throughout this project, the use of data structures are not permitted such as methods like .split and .toCharArray
-// hihi dklfsdjlkfdsklfjklsdjflkds
+
 
 
 import java.util.Scanner;
@@ -55,6 +55,9 @@ class CustomerSystem{
     * This method may also be broken down further depending on your algorithm
     */
     public static void enterCustomerInfo() {
+        System.out.println("Enter the customer info method");
+        String firstName = "Cynthia";
+        String lastName = "Lei";
     }
     /*
     * This method may be edited to achieve the task however you like.
@@ -69,6 +72,7 @@ class CustomerSystem{
     * This method may also be broken down further depending on your algorithm
     */
     public static void validateCreditCard(){
+        System.out.println("Enter the validate credit card method");
     }
     /*
     * This method may be edited to achieve the task however you like.
