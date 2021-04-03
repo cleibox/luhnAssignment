@@ -72,27 +72,32 @@ class CustomerSystem{
         String postalCode = "L4S";
         System.out.println("postalCode is " + postalCode);
 
-        int creditCardNum = 123456789;
-        while (validateCreditCard(creditCardNum) != true) {
-            try {
-                System.out.print("Enter credit card number: ");
-                creditCardNum = reader.nextInt();
-            }
-            catch (java.util.InputMismatchException e) {
-                System.out.println("Please input an INTEGER");
-            }
-            reader.nextLine();
-            System.out.println("creditCardNum is " + creditCardNum + "\n");
+        String creditCardNum = " ";
+        while (isStringAllNum(creditCardNum) != true) {
+            System.out.print("Enter credit card number with ONLY NUMBERS (NO SPACES, HYPHENS): ");
+            creditCardNum = reader.nextLine();
         }
-        System.out.println("The stored creditCardNum is " + creditCardNum + "\n");
-        System.out.println("The number of digits: " + creditDigitLength(Integer.toString(creditCardNum)) + "\n");
-
+        System.out.println("creditCardNum is " + creditCardNum + "\n");
 
         // must call generateCustomerDataFile after all user input is done so that
         // if the user wants to input a new set of data, the just inputted data won't
         // be lost
 
     }
+    
+    public static boolean isStringAllNum (String str) {
+        // Checks if the credit card number string input consists of all numerical values
+
+        int len = str.length();
+        for (int i = 0; i < len; i++) {
+            // if statement to check if a character is NOT a number
+            if (!Character.isDigit(str.charAt(i))) { 
+                return false;
+            }
+        }
+        return true; // every character is a number
+    }
+
     /*
     * This method may be edited to achieve the task however you like.
     * The method may not nesessarily be a void return type
@@ -105,17 +110,8 @@ class CustomerSystem{
     * The method may not nesessarily be a void return type
     * This method may also be broken down further depending on your algorithm
     */
-    public static boolean validateCreditCard(int num){
+    public static void validateCreditCard(int num){
         System.out.println("Enter the validateCreditCard() method");
-
-        String numString = Integer.toString(num); // convert from int to string
-
-        if (num == 123){
-            return true;
-        }
-        else {
-            return false;
-        }
         
     }
 
