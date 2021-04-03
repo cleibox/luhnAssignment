@@ -85,6 +85,8 @@ class CustomerSystem{
             System.out.println("creditCardNum is " + creditCardNum + "\n");
         }
         System.out.println("The stored creditCardNum is " + creditCardNum + "\n");
+        System.out.println("The number of digits: " + creditDigitLength(Integer.toString(creditCardNum)) + "\n");
+
 
         // must call generateCustomerDataFile after all user input is done so that
         // if the user wants to input a new set of data, the just inputted data won't
@@ -104,7 +106,10 @@ class CustomerSystem{
     * This method may also be broken down further depending on your algorithm
     */
     public static boolean validateCreditCard(int num){
-        System.out.println("Enter the validate credit card method");
+        System.out.println("Enter the validateCreditCard() method");
+
+        String numString = Integer.toString(num); // convert from int to string
+
         if (num == 123){
             return true;
         }
@@ -113,6 +118,11 @@ class CustomerSystem{
         }
         
     }
+
+    public static int creditDigitLength (String digits) {
+        return digits.length();
+    }
+
     /*
     * This method may be edited to achieve the task however you like.
     * The method may not nesessarily be a void return type
