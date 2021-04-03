@@ -55,9 +55,23 @@ class CustomerSystem{
     * This method may also be broken down further depending on your algorithm
     */
     public static void enterCustomerInfo() {
-        System.out.println("Enter the customer info method");
+        System.out.println("\nEnter the customer info method");
+        
         String firstName = "Cynthia";
+        System.out.println("firstName is " + firstName);
+        
         String lastName = "Lei";
+        System.out.println("lastName is " + lastName);
+        
+        String city = "Toronto";
+        System.out.println("city is " + city);
+
+        String postalCode = "L4S";
+        System.out.println("postalCode is " + postalCode);
+
+        int creditCardNum = 123456789;
+        System.out.println("creditCardNum is " + creditCardNum + "\n");
+
     }
     /*
     * This method may be edited to achieve the task however you like.
