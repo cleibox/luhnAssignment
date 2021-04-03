@@ -84,6 +84,11 @@ class CustomerSystem{
             reader.nextLine();
             System.out.println("creditCardNum is " + creditCardNum + "\n");
         }
+        System.out.println("The stored creditCardNum is " + creditCardNum + "\n");
+
+        // must call generateCustomerDataFile after all user input is done so that
+        // if the user wants to input a new set of data, the just inputted data won't
+        // be lost
 
     }
     /*
