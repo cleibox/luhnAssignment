@@ -74,12 +74,16 @@ class CustomerSystem{
 
         int creditCardNum = 123456789;
         while (validateCreditCard(creditCardNum) != true) {
-            System.out.println("Enter credit card number");
-            creditCardNum = reader.nextInt();
+            try {
+                System.out.print("Enter credit card number: ");
+                creditCardNum = reader.nextInt();
+            }
+            catch (java.util.InputMismatchException e) {
+                System.out.println("Please input an INTEGER");
+            }
             reader.nextLine();
             System.out.println("creditCardNum is " + creditCardNum + "\n");
         }
-        
 
     }
     /*
