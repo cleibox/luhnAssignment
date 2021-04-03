@@ -72,11 +72,14 @@ class CustomerSystem{
         String postalCode = "L4S";
         System.out.println("postalCode is " + postalCode);
 
-        //int creditCardNum = 123456789;
-        System.out.println("Enter credit card number");
-        int creditCardNum = reader.nextInt();
-        reader.nextLine();
-        System.out.println("creditCardNum is " + creditCardNum + "\n");
+        int creditCardNum = 123456789;
+        while (validateCreditCard(creditCardNum) != true) {
+            System.out.println("Enter credit card number");
+            creditCardNum = reader.nextInt();
+            reader.nextLine();
+            System.out.println("creditCardNum is " + creditCardNum + "\n");
+        }
+        
 
     }
     /*
@@ -91,8 +94,15 @@ class CustomerSystem{
     * The method may not nesessarily be a void return type
     * This method may also be broken down further depending on your algorithm
     */
-    public static void validateCreditCard(int num){
-        System.out.println("Enter the validate credit card method" + num);
+    public static boolean validateCreditCard(int num){
+        System.out.println("Enter the validate credit card method");
+        if (num == 123){
+            return true;
+        }
+        else {
+            return false;
+        }
+        
     }
     /*
     * This method may be edited to achieve the task however you like.
