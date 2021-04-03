@@ -56,6 +56,9 @@ class CustomerSystem{
     */
     public static void enterCustomerInfo(Scanner reader) {
         System.out.println("\nEnter the customer info method");
+
+        int customerID = 1;
+        System.out.println("customerID is " + customerID);
         
         String firstName = "Cynthia";
         System.out.println("firstName is " + firstName);
@@ -72,6 +75,7 @@ class CustomerSystem{
         //int creditCardNum = 123456789;
         System.out.println("Enter credit card number");
         int creditCardNum = reader.nextInt();
+        reader.nextLine();
         System.out.println("creditCardNum is " + creditCardNum + "\n");
 
     }
