@@ -50,11 +50,14 @@ class CustomerSystem{
         .concat("Enter menu option (1-9)\n")
         );
     }
-    /*
-    * This method may be edited to achieve the task however you like.
-    * The method may not nesessarily be a void return type
-    * This method may also be broken down further depending on your algorithm
-    */
+    /**
+     * @author Cynthia Lei
+     * Enter customer information
+     * 
+     * @param reader scanner for user input; saves the hassle of reinitializing
+     * @param ID a unique customer ID per visit
+     * @return the user's inputted name, city, postal code, credit card
+     */
     public static void enterCustomerInfo(Scanner reader, int ID) {
         System.out.println("\nEnter the customer info method");
 
@@ -103,11 +106,13 @@ class CustomerSystem{
     */
     public static void validatePostalCode(){
     }
-    /*
-    * This method may be edited to achieve the task however you like.
-    * The method may not nesessarily be a void return type
-    * This method may also be broken down further depending on your algorithm
-    */
+    /**
+     * @author Cynthia Lei
+     * Check if the inputted credit card is valid
+     * 
+     * @param credit the inputted credit card value
+     * @return true if credit number is valid, otherwise false
+     */
     public static boolean validateCreditCard(String credit){ 
         // Reversing the string --------------------------------------------------
         String link = ""; // this helps link all the characters together
@@ -163,11 +168,9 @@ class CustomerSystem{
         int sumTotal = sum1 + sum2;
 
         if (sumTotal % 10 == 0){
-            //System.out.println("VALID");
             return true; // valid credit card
         }
         else {
-            //System.out.println("INVALID");
             return false; // invalid credit card
         }
         // ------------------------------------------------------------------------
@@ -187,12 +190,18 @@ class CustomerSystem{
     /*******************************************************************
     *       ADDITIONAL METHODS MAY BE ADDED BELOW IF NECESSARY         *
     *******************************************************************/
+    /**
+     * @author Cynthia Lei
+     * Checks if the string (credit number) consists of all numerical values
+     * 
+     * @param str user inputted String credit number
+     * @return true if it contains all numerical values, otherwise false
+     */
     public static boolean isStringAllNum (String str) {
         // Checks if the credit card number string input consists of all numerical values
-
         int len = str.length();
         for (int i = 0; i < len; i++) {
-            // if statement to check if a character is NOT a number
+            // Interrupts the for loop the moment it hits a non-numerical character
             if (!Character.isDigit(str.charAt(i))) { 
                 return false;
             }
