@@ -149,15 +149,32 @@ class CustomerSystem{
         // Sum2 -------------------------------------------------------------------
         int sum2 = 0;
 
-        for (int x = 0; x < len; x++) {
-            if (x % 2 != 0) {
+        for (int z = 0; z < len; z++) {
+            if (z % 2 != 0) {
                 // every EVEN digit
-                //System.out.println(link.charAt(x));
+                int digit = Integer.parseInt(Character.toString(link.charAt(z)));
+                int doubleDigit = digit*2;
+                //System.out.println(digit*2);
                 
-                int digit = Integer.parseInt(Character.toString(link.charAt(x)));
-                System.out.println(digit*2);
+                if (doubleDigit > 9) {
+                    int doubleDigitSum = 0;
+                    
+                    // Sum of the digits
+                    while(doubleDigit > 0) {
+                        int remainder = doubleDigit % 10; // Get the ones place value
+                        doubleDigitSum = doubleDigitSum + remainder;
+                        doubleDigit = doubleDigit/10;
+                    } 
+
+                    sum2 += doubleDigitSum;
+                }
+                else {
+                    sum2 += doubleDigit;
+                }
+                
             }
         }
+        System.out.println("sum of even digits is " + sum2);
         // ------------------------------------------------------------------------
 
 
