@@ -163,7 +163,7 @@ class CustomerSystem{
                     while(doubleDigit > 0) {
                         int remainder = doubleDigit % 10; // Get the ones place value
                         doubleDigitSum = doubleDigitSum + remainder;
-                        doubleDigit = doubleDigit/10;
+                        doubleDigit = doubleDigit/10; // Get tens value
                     } 
 
                     sum2 += doubleDigitSum;
@@ -177,7 +177,14 @@ class CustomerSystem{
         System.out.println("sum of even digits is " + sum2);
         // ------------------------------------------------------------------------
 
+        int sumTotal = sum1 + sum2;
 
+        if (sumTotal % 10 == 0){
+            System.out.println("VALID");
+        }
+        else {
+            System.out.println("INVALID");
+        }
 
     }
 
