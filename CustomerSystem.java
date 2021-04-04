@@ -73,14 +73,12 @@ class CustomerSystem{
         String creditCardNum = reader.nextLine();
         while ( (creditCardNum.length() < 9) 
             || (isStringAllNum(creditCardNum) != true) 
-            //|| if credit card not valid
+            || validateCreditCard(creditCardNum) != true
             ) {
-            System.out.print("Please input with ONLY NUMBERS and AT LEAST 9 digits: ");
+            System.out.print("Please enter a VALID credit number (ONLY NUMBERS, AT LEAST 9 digits): ");
             creditCardNum = reader.nextLine();
         }
         System.out.println("creditCardNum is stored as " + creditCardNum + "\n");
-
-        validateCreditCard(creditCardNum);
 
         // must call generateCustomerDataFile after all user input is done so that
         // if the user wants to input a new set of data, the just inputted data won't
@@ -113,8 +111,8 @@ class CustomerSystem{
     * The method may not nesessarily be a void return type
     * This method may also be broken down further depending on your algorithm
     */
-    public static void validateCreditCard(String credit){ 
-        System.out.println("credit number so far is " + credit);
+    public static boolean validateCreditCard(String credit){ 
+        //System.out.println("credit number so far is " + credit);
 
         // Reversing the string --------------------------------------------------
         String link = ""; // this helps link all the characters together
@@ -124,7 +122,7 @@ class CustomerSystem{
         for (int i = (len - 1); i >= 0; i--) {
             link = link + credit.charAt(i);
         }
-        System.out.println("Reversed: " + link);
+        //System.out.println("Reversed: " + link);
         // ------------------------------------------------------------------------
 
         // Sum1 -------------------------------------------------------------------
@@ -138,7 +136,7 @@ class CustomerSystem{
                 sum1 += Integer.parseInt(digit);
             }
         }
-        System.out.println("sum of odd digits is " + sum1);
+        //System.out.println("sum of odd digits is " + sum1);
         // ------------------------------------------------------------------------
 
         // Sum2 -------------------------------------------------------------------
@@ -169,17 +167,19 @@ class CustomerSystem{
                 
             }
         }
-        System.out.println("sum of even digits is " + sum2);
+        //System.out.println("sum of even digits is " + sum2);
         // ------------------------------------------------------------------------
 
         // Credit Card Validitiy --------------------------------------------------
         int sumTotal = sum1 + sum2;
 
         if (sumTotal % 10 == 0){
-            System.out.println("VALID");
+            //System.out.println("VALID");
+            return true; // valid credit card
         }
         else {
-            System.out.println("INVALID");
+            //System.out.println("INVALID");
+            return false; // invalid credit card
         }
         // ------------------------------------------------------------------------
   
