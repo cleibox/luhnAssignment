@@ -85,20 +85,6 @@ class CustomerSystem{
         // be lost
 
     }
-    
-    public static boolean isStringAllNum (String str) {
-        // Checks if the credit card number string input consists of all numerical values
-
-        int len = str.length();
-        for (int i = 0; i < len; i++) {
-            // if statement to check if a character is NOT a number
-            if (!Character.isDigit(str.charAt(i))) { 
-                return false;
-            }
-        }
-        return true; // every character is a number
-    }
-
     /*
     * This method may be edited to achieve the task however you like.
     * The method may not nesessarily be a void return type
@@ -184,7 +170,6 @@ class CustomerSystem{
         // ------------------------------------------------------------------------
   
     }
-
     /*
     * This method may be edited to achieve the task however you like.
     * The method may not nesessarily be a void return type
@@ -195,4 +180,16 @@ class CustomerSystem{
     /*******************************************************************
     *       ADDITIONAL METHODS MAY BE ADDED BELOW IF NECESSARY         *
     *******************************************************************/
+    public static boolean isStringAllNum (String str) {
+        // Checks if the credit card number string input consists of all numerical values
+
+        int len = str.length();
+        for (int i = 0; i < len; i++) {
+            // if statement to check if a character is NOT a number
+            if (!Character.isDigit(str.charAt(i))) { 
+                return false;
+            }
+        }
+        return true; // every character is a number
+    }
 }
