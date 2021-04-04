@@ -69,13 +69,18 @@ class CustomerSystem{
         String postalCode = "L4S";
         System.out.println("postalCode is " + postalCode);
 
-        System.out.print("Enter credit card number: ");
+        System.out.print("Enter a valid credit card number: ");
         String creditCardNum = reader.nextLine();
-        while ((creditCardNum.length() < 9) || (isStringAllNum(creditCardNum) != true) ) {
-            System.out.print("Wrong format. Please input with ONLY NUMBERS and AT LEAST 9 digits: ");
+        while ( (creditCardNum.length() < 9) 
+            || (isStringAllNum(creditCardNum) != true) 
+            //|| if credit card not valid
+            ) {
+            System.out.print("Please input with ONLY NUMBERS and AT LEAST 9 digits: ");
             creditCardNum = reader.nextLine();
         }
         System.out.println("creditCardNum is stored as " + creditCardNum + "\n");
+
+        luhnSum1(creditCardNum);
 
         // must call generateCustomerDataFile after all user input is done so that
         // if the user wants to input a new set of data, the just inputted data won't
@@ -108,12 +113,28 @@ class CustomerSystem{
     * The method may not nesessarily be a void return type
     * This method may also be broken down further depending on your algorithm
     */
-    public static void validateCreditCard(int num){
+    public static void validateCreditCard(int num){ 
         System.out.println("Enter the validateCreditCard() method");
         
     }
 
-    public static int creditDigitLength (String digits) {
+    public static void luhnSum1(String credit) {
+        System.out.println("credit number so far is " + credit);
+
+        // Reversing the string --------------------------------------------------
+        String link = ""; // this helps link all the characters together
+        int len = credit.length(); // length of credit
+
+        // for loop range starts from the end and counts down (reversed order)
+        for (int i = (len - 1); i >= 0; i--) {
+            link = link + credit.charAt(i);
+        }
+        System.out.println("Reversed: " + link);
+        // ------------------------------------------------------------------------
+
+    }
+
+    public static int creditDigitLength(String digits) {
         return digits.length();
     }
 
