@@ -63,11 +63,36 @@ class CustomerSystem{
     */
     public static void validatePostalCode(){
     }
-    /*
-    * This method may be edited to achieve the task however you like.
-    * The method may not nesessarily be a void return type
-    * This method may also be broken down further depending on your algorithm
-    */
+     try {
+            // open the file
+            // create a file instance to reference the text file in java
+            File textFile = new File("/Users/daiphylee/luhnAssignment/testing/postal_codes.csv");
+
+            // read the file
+            // we create a scanner instance to read the file in java
+            // Scanner reader = new Scanner(System.in);
+            Scanner reader = new Scanner(textFile);
+        
+            while (reader.hasNextLine()) {
+                // read the file 
+                String data = reader.nextLine();
+                //output text to terminal
+                System.out.println(data);
+            } 
+
+            reader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred");
+            e.printStackTrace();
+        }
+
+        // if string is in string index of wont be -1
+        if (data.indexOf(postalCode) != -1) {
+            System.out.println("The postal code, '" + postalCode + "' is found in the list.'";
+        }
+        else {
+            System.out.println("The postal code, '" + postalCode + "' is not found in the list.'";
+        }
     public static void validateCreditCard(){
     }
     /*
