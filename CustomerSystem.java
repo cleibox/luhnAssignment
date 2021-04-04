@@ -79,7 +79,7 @@ class CustomerSystem{
                 System.out.println("Please enter AT LEAST 9 digits");
             }
             if (isStringAllNum(creditCardNum) != true) {
-                System.out.println("Please enter ONLY NUMBERS");
+                System.out.println("Please enter ONLY NUMBERS (no spaces, hypens)");
             }
             if (validateCreditCard(creditCardNum) != true) {
                 System.out.println("Please enter a VALID credit number");
@@ -122,8 +122,9 @@ class CustomerSystem{
         // string data type to integer so there will be an issue if the original string
         // is not a numerical value
         try {
-            // Sum1 -------------------------------------------------------------------
+        // sum1 and sum2 -----------------------------------------------------------
         int sum1 = 0;
+        int sum2 = 0;
 
         for (int x = 0; x < len; x++) {
             if (x % 2 == 0) {
@@ -132,17 +133,9 @@ class CustomerSystem{
                 String digit = Character.toString(link.charAt(x)); // character to string
                 sum1 += Integer.parseInt(digit); // string to int
             }
-        }
-        //System.out.println("sum of odd digits is " + sum1);
-        // ------------------------------------------------------------------------
-
-        // Sum2 -------------------------------------------------------------------
-        int sum2 = 0;
-
-        for (int z = 0; z < len; z++) {
-            if (z % 2 != 0) {
-                // every EVEN digit
-                int digit = Integer.parseInt(Character.toString(link.charAt(z)));
+            // every EVEN digit
+            else {
+                int digit = Integer.parseInt(Character.toString(link.charAt(x)));
                 int doubleDigit = digit*2;
                 //System.out.println(digit*2);
                 
@@ -155,18 +148,15 @@ class CustomerSystem{
                         doubleDigitSum = doubleDigitSum + remainder;
                         doubleDigit = doubleDigit/10; // Get tens value
                     } 
-
                     sum2 += doubleDigitSum;
                 }
                 else {
                     sum2 += doubleDigit;
                 }
-                
             }
         }
-        //System.out.println("sum of even digits is " + sum2);
         // ------------------------------------------------------------------------
-
+        
         // Credit Card Validitiy --------------------------------------------------
         int sumTotal = sum1 + sum2;
 
@@ -184,7 +174,6 @@ class CustomerSystem{
         catch (java.lang.NumberFormatException e) {
             return false; // credit number input is not all numerical values
         }
-
     }
     /*
     * This method may be edited to achieve the task however you like.
