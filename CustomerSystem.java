@@ -138,7 +138,7 @@ class CustomerSystem{
         for (int x = 0; x < len; x++) {
             if (x % 2 == 0) {
                 // every ODD digit
-                System.out.println(link.charAt(x));
+                //System.out.println(link.charAt(x));
                 String digit = Character.toString(link.charAt(x));
                 sum1 += Integer.parseInt(digit);
             }
@@ -146,12 +146,22 @@ class CustomerSystem{
         System.out.println("sum of odd digits is " + sum1);
         // ------------------------------------------------------------------------
 
-        
+        // Sum2 -------------------------------------------------------------------
+        int sum2 = 0;
 
-    }
+        for (int x = 0; x < len; x++) {
+            if (x % 2 != 0) {
+                // every EVEN digit
+                //System.out.println(link.charAt(x));
+                
+                int digit = Integer.parseInt(Character.toString(link.charAt(x)));
+                System.out.println(digit*2);
+            }
+        }
+        // ------------------------------------------------------------------------
 
-    public static int creditDigitLength(String digits) {
-        return digits.length();
+
+
     }
 
     /*
