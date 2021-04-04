@@ -62,19 +62,27 @@ class CustomerSystem{
         System.out.println("\nEnter the customer info method");
 
         ID += 1;
-        System.out.println("customerID is " + ID);
+        System.out.println("customerID: " + ID);
         
-        String firstName = "Cynthia";
-        System.out.println("firstName is " + firstName);
+        System.out.print("Enter your first name: ");
+        //String firstName = "Cynthia";
+        String firstName = reader.nextLine();
+        //System.out.println("firstName is " + firstName);
         
-        String lastName = "Lei";
-        System.out.println("lastName is " + lastName);
+        System.out.print("Enter your last name: ");
+        //String lastName = "Lei";
+        String lastName = reader.nextLine();
+        //System.out.println("lastName is " + lastName);
         
-        String city = "Toronto";
-        System.out.println("city is " + city);
+        System.out.print("Enter your city: ");
+        //String city = "Toronto";
+        String city = reader.nextLine();
+        //System.out.println("city is " + city);
 
-        String postalCode = "L4S";
-        System.out.println("postalCode is " + postalCode);
+        System.out.print("Enter your postal code: ");
+        //String postalCode = "L4S";
+        String postalCode = reader.nextLine();
+        //System.out.println("postalCode is " + postalCode);
 
         System.out.print("Enter a valid credit card number: ");
         String creditCardNum = reader.nextLine();
@@ -91,7 +99,7 @@ class CustomerSystem{
             if (validateCreditCard(creditCardNum) != true) {
                 System.out.println("Please enter a VALID credit number");
             }
-            creditCardNum = reader.nextLine();
+            creditCardNum = reader.nextLine(); // reinput
         }
         System.out.println("creditCardNum is stored as " + creditCardNum + "\n");
 
