@@ -15,7 +15,7 @@ class CustomerSystem{
         exitCondition = "9";
 
         // More variables for the main may be declared in the space below
-
+        int customerID = 0;
 
         do{
             printMenu();                                    // Printing out the main menu
@@ -24,7 +24,8 @@ class CustomerSystem{
             if (userInput.equals(enterCustomerOption)){
                 // Only the line below may be editted based on the parameter list and how you design the method return
 		        // Any necessary variables may be added to this if section, but nowhere else in the code
-                enterCustomerInfo(reader);
+                enterCustomerInfo(reader, customerID);
+                customerID += 1; // ID increments by 1 per new visit
             }
             else if (userInput.equals(generateCustomerOption)) {
                 // Only the line below may be editted based on the parameter list and how you design the method return
@@ -54,8 +55,11 @@ class CustomerSystem{
     * The method may not nesessarily be a void return type
     * This method may also be broken down further depending on your algorithm
     */
-    public static void enterCustomerInfo(Scanner reader) {
+    public static void enterCustomerInfo(Scanner reader, int ID) {
         System.out.println("\nEnter the customer info method");
+
+        ID += 1;
+        System.out.println("customerID is " + ID);
         
         String firstName = "Cynthia";
         System.out.println("firstName is " + firstName);
@@ -105,8 +109,6 @@ class CustomerSystem{
     * This method may also be broken down further depending on your algorithm
     */
     public static boolean validateCreditCard(String credit){ 
-        //System.out.println("credit number so far is " + credit);
-
         // Reversing the string --------------------------------------------------
         String link = ""; // this helps link all the characters together
         int len = credit.length(); // length of credit
@@ -156,7 +158,7 @@ class CustomerSystem{
             }
         }
         // ------------------------------------------------------------------------
-        
+
         // Credit Card Validitiy --------------------------------------------------
         int sumTotal = sum1 + sum2;
 
