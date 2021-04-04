@@ -56,9 +56,6 @@ class CustomerSystem{
     */
     public static void enterCustomerInfo(Scanner reader) {
         System.out.println("\nEnter the customer info method");
-
-        int customerID = 1;
-        System.out.println("customerID is " + customerID);
         
         String firstName = "Cynthia";
         System.out.println("firstName is " + firstName);
@@ -72,12 +69,13 @@ class CustomerSystem{
         String postalCode = "L4S";
         System.out.println("postalCode is " + postalCode);
 
-        String creditCardNum = " ";
-        while (isStringAllNum(creditCardNum) != true) {
-            System.out.print("Enter credit card number with ONLY NUMBERS (NO SPACES, HYPHENS): ");
+        System.out.print("Enter credit card number: ");
+        String creditCardNum = reader.nextLine();
+        while ((creditCardNum.length() < 9) || (isStringAllNum(creditCardNum) != true) ) {
+            System.out.print("Wrong format. Please input with ONLY NUMBERS and AT LEAST 9 digits: ");
             creditCardNum = reader.nextLine();
         }
-        System.out.println("creditCardNum is " + creditCardNum + "\n");
+        System.out.println("creditCardNum is stored as " + creditCardNum + "\n");
 
         // must call generateCustomerDataFile after all user input is done so that
         // if the user wants to input a new set of data, the just inputted data won't
