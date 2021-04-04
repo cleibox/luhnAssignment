@@ -80,7 +80,7 @@ class CustomerSystem{
         }
         System.out.println("creditCardNum is stored as " + creditCardNum + "\n");
 
-        luhnSum1(creditCardNum);
+        luhnAlgor(creditCardNum);
 
         // must call generateCustomerDataFile after all user input is done so that
         // if the user wants to input a new set of data, the just inputted data won't
@@ -118,7 +118,7 @@ class CustomerSystem{
         
     }
 
-    public static void luhnSum1(String credit) {
+    public static void luhnAlgor(String credit) {
         System.out.println("credit number so far is " + credit);
 
         // Reversing the string --------------------------------------------------
@@ -131,6 +131,22 @@ class CustomerSystem{
         }
         System.out.println("Reversed: " + link);
         // ------------------------------------------------------------------------
+
+        // Sum1 -------------------------------------------------------------------
+        int sum1 = 0;
+
+        for (int x = 0; x < len; x++) {
+            if (x % 2 == 0) {
+                // every ODD digit
+                System.out.println(link.charAt(x));
+                String digit = Character.toString(link.charAt(x));
+                sum1 += Integer.parseInt(digit);
+            }
+        }
+        System.out.println("sum of odd digits is " + sum1);
+        // ------------------------------------------------------------------------
+
+        
 
     }
 
