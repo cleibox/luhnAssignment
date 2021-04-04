@@ -73,9 +73,17 @@ class CustomerSystem{
         String creditCardNum = reader.nextLine();
         while ( (creditCardNum.length() < 9) 
             || (isStringAllNum(creditCardNum) != true) 
-            || validateCreditCard(creditCardNum) != true
+            || (validateCreditCard(creditCardNum) != true)
             ) {
-            System.out.print("Please enter a VALID credit number (ONLY NUMBERS, AT LEAST 9 digits): ");
+            if (creditCardNum.length() < 9) {
+                System.out.println("Please enter AT LEAST 9 digits");
+            }
+            if (isStringAllNum(creditCardNum) != true) {
+                System.out.println("Please enter ONLY NUMBERS");
+            }
+            if (validateCreditCard(creditCardNum) != true) {
+                System.out.println("Please enter a VALID credit number");
+            }
             creditCardNum = reader.nextLine();
         }
         System.out.println("creditCardNum is stored as " + creditCardNum + "\n");
@@ -83,7 +91,6 @@ class CustomerSystem{
         // must call generateCustomerDataFile after all user input is done so that
         // if the user wants to input a new set of data, the just inputted data won't
         // be lost
-
     }
     /*
     * This method may be edited to achieve the task however you like.
@@ -111,15 +118,19 @@ class CustomerSystem{
         //System.out.println("Reversed: " + link);
         // ------------------------------------------------------------------------
 
-        // Sum1 -------------------------------------------------------------------
+        // Put a try-catch here because the try block includes a code that will convert
+        // string data type to integer so there will be an issue if the original string
+        // is not a numerical value
+        try {
+            // Sum1 -------------------------------------------------------------------
         int sum1 = 0;
 
         for (int x = 0; x < len; x++) {
             if (x % 2 == 0) {
                 // every ODD digit
                 //System.out.println(link.charAt(x));
-                String digit = Character.toString(link.charAt(x));
-                sum1 += Integer.parseInt(digit);
+                String digit = Character.toString(link.charAt(x)); // character to string
+                sum1 += Integer.parseInt(digit); // string to int
             }
         }
         //System.out.println("sum of odd digits is " + sum1);
@@ -168,7 +179,12 @@ class CustomerSystem{
             return false; // invalid credit card
         }
         // ------------------------------------------------------------------------
-  
+
+        }
+        catch (java.lang.NumberFormatException e) {
+            return false; // credit number input is not all numerical values
+        }
+
     }
     /*
     * This method may be edited to achieve the task however you like.
