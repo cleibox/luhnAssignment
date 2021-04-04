@@ -80,7 +80,7 @@ class CustomerSystem{
         }
         System.out.println("creditCardNum is stored as " + creditCardNum + "\n");
 
-        luhnAlgor(creditCardNum);
+        validateCreditCard(creditCardNum);
 
         // must call generateCustomerDataFile after all user input is done so that
         // if the user wants to input a new set of data, the just inputted data won't
@@ -113,12 +113,7 @@ class CustomerSystem{
     * The method may not nesessarily be a void return type
     * This method may also be broken down further depending on your algorithm
     */
-    public static void validateCreditCard(int num){ 
-        System.out.println("Enter the validateCreditCard() method");
-        
-    }
-
-    public static void luhnAlgor(String credit) {
+    public static void validateCreditCard(String credit){ 
         System.out.println("credit number so far is " + credit);
 
         // Reversing the string --------------------------------------------------
@@ -177,6 +172,7 @@ class CustomerSystem{
         System.out.println("sum of even digits is " + sum2);
         // ------------------------------------------------------------------------
 
+        // Credit Card Validitiy --------------------------------------------------
         int sumTotal = sum1 + sum2;
 
         if (sumTotal % 10 == 0){
@@ -185,7 +181,8 @@ class CustomerSystem{
         else {
             System.out.println("INVALID");
         }
-
+        // ------------------------------------------------------------------------
+  
     }
 
     /*
