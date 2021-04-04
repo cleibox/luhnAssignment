@@ -3,67 +3,30 @@
 
 
 import java.util.Scanner;
+import java.io.File; // import file class
+import java.io.FileNotFoundException; // import class to handle errors
 // More packages may be imported in the space below
 
 class CustomerSystem{
     public static void main(String[] args){
-        // Please do not edit any of these variables
-        Scanner reader = new Scanner(System.in);
-        String userInput, enterCustomerOption, generateCustomerOption, exitCondition;
-        enterCustomerOption = "1";
-        generateCustomerOption = "2";
-        exitCondition = "9";
-
-        // More variables for the main may be declared in the space below
-
-
-        do{
-            printMenu();                                    // Printing out the main menu
-            userInput = reader.nextLine();                  // User selection from the menu
-
-            if (userInput.equals(enterCustomerOption)){
-                // Only the line below may be editted based on the parameter list and how you design the method return
-		        // Any necessary variables may be added to this if section, but nowhere else in the code
-                enterCustomerInfo();
-            }
-            else if (userInput.equals(generateCustomerOption)) {
-                // Only the line below may be editted based on the parameter list and how you design the method return
-                generateCustomerDataFile();
-            }
-            else{
-                System.out.println("Please type in a valid option (A number from 1-9)");
-            }
-
-        } while (!userInput.equals(exitCondition));         // Exits once the user types 
         
-        reader.close();
+        String postalCode = "T1M";
+
+        System.out.println(validatePostalCode(postalCode));
+        
         System.out.println("Program Terminated");
     }
-    public static void printMenu(){
-        System.out.println("Customer and Sales System\n"
-        .concat("1. Enter Customer Information\n")
-        .concat("2. Generate Customer data file\n")
-        .concat("3. Report on total Sales (Not done in this part)\n")
-        .concat("4. Check for fraud in sales data (Not done in this part)\n")
-        .concat("9. Quit\n")
-        .concat("Enter menu option (1-9)\n")
-        );
-    }
-    /*
-    * This method may be edited to achieve the task however you like.
-    * The method may not nesessarily be a void return type
-    * This method may also be broken down further depending on your algorithm
-    */
-    public static void enterCustomerInfo() {
-    }
-    /*
-    * This method may be edited to achieve the task however you like.
-    * The method may not nesessarily be a void return type
-    * This method may also be broken down further depending on your algorithm
-    */
-    public static void validatePostalCode(){
-    }
-     try {
+    /**
+     * @author Daiphy Lee
+     * Description : Open & reads postal_codes.csv file and identifies if the postal code entered matchs with postal codes on file
+     * 
+     * @param postalCode - 3 character code the user enters
+     * @return true, false
+     */
+    public static boolean validatePostalCode(String postalCode){
+
+        try {
+            
             // open the file
             // create a file instance to reference the text file in java
             File textFile = new File("/Users/daiphylee/luhnAssignment/testing/postal_codes.csv");
@@ -76,34 +39,23 @@ class CustomerSystem{
             while (reader.hasNextLine()) {
                 // read the file 
                 String data = reader.nextLine();
-                //output text to terminal
-                System.out.println(data);
+                
+                // if string is in string index of wont be -1
+                if (data.indexOf(postalCode) != -1) {
+                    return true;
+                }
             } 
-
             reader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred");
-            e.printStackTrace();
+            return false;
+        } 
+        catch (FileNotFoundException e) {
+            return false;
         }
-
-        // if string is in string index of wont be -1
-        if (data.indexOf(postalCode) != -1) {
-            System.out.println("The postal code, '" + postalCode + "' is found in the list.'";
-        }
-        else {
-            System.out.println("The postal code, '" + postalCode + "' is not found in the list.'";
-        }
-    public static void validateCreditCard(){
     }
-    /*
-    * This method may be edited to achieve the task however you like.
-    * The method may not nesessarily be a void return type
-    * This method may also be broken down further depending on your algorithm
-    */
+    
     public static void generateCustomerDataFile(){
     }
     /*******************************************************************
     *       ADDITIONAL METHODS MAY BE ADDED BELOW IF NECESSARY         *
     *******************************************************************/
-    }
 }
