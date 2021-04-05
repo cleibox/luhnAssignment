@@ -68,21 +68,36 @@ class CustomerSystem{
         //String firstName = "Cynthia";
         String firstName = reader.nextLine();
         //System.out.println("firstName is " + firstName);
+        System.out.println("The first name is stored as " + firstName + "\n");
         
         System.out.print("Enter your last name: ");
         //String lastName = "Lei";
         String lastName = reader.nextLine();
         //System.out.println("lastName is " + lastName);
+        System.out.println("The last name is stored as " + lastName + "\n");
         
         System.out.print("Enter your city: ");
         //String city = "Toronto";
         String city = reader.nextLine();
         //System.out.println("city is " + city);
+	System.out.println("The city is stored as " + city + "\n");
+
 
         System.out.print("Enter your postal code: ");
         //String postalCode = "L4S";
         String postalCode = reader.nextLine();
         //System.out.println("postalCode is " + postalCode);
+	while ( (postalCode.length() < 3) || (validatePostalCode(postalCode) != true) ) {
+            if (postalCode.length() < 3) {
+                System.out.println("Please enter AT LEAST 3 characters");
+            }
+            if (validatePostalCode(postalCode) != true) {
+                System.out.println("Please enter a VALID postal code");
+            }
+            postalCode = reader.nextLine();
+        }
+        System.out.println("The postal code is stored as " + postalCode + "\n");
+
 
         System.out.print("Enter a valid credit card number: ");
         String creditCardNum = reader.nextLine();
