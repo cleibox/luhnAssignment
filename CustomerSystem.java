@@ -22,7 +22,7 @@ class CustomerSystem{
         exitCondition = "9";
 
         // More variables for the main may be declared in the space below
-        int customerID = 10000;
+        int customerID = 0;
 
         do{
             printMenu();                                    // Printing out the main menu
