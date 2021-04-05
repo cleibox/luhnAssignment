@@ -96,6 +96,7 @@ class CustomerSystem{
             }
             postalCode = reader.nextLine();
         }
+        postalCode = changeCase(postalCode);
         System.out.println("The postal code is stored as " + postalCode + "\n");
 
 
@@ -122,12 +123,67 @@ class CustomerSystem{
         // if the user wants to input a new set of data, the just inputted data won't
         // be lost
     }
-    /*
-    * This method may be edited to achieve the task however you like.
-    * The method may not nesessarily be a void return type
-    * This method may also be broken down further depending on your algorithm
-    */
-    public static void validatePostalCode(){
+	    /**
+     * @author Daiphy Lee
+     * Description : Changes whole postal code to uppercase 
+     * 
+     * @param code - postal the user enters
+     * @return the postal code as capital
+     */
+    public static String changeCase(String code){
+        String caseChanged;
+        // changes the user input into uppercase letters
+        caseChanged = code.toUpperCase();
+        return caseChanged;
+    }
+    /**
+     * @author Daiphy Lee
+     * Description : Open & reads postal_codes.csv file and identifies if the postal code entered matchs with postal codes on file
+     * 
+     * @param postalCode - 3 character code the user enters
+     * @return true, false
+     */
+    public static boolean validatePostalCode(String postal){
+
+        // call on the changeCase method to change the postal code to uppercase so "l3s" is equivalent to "L3S"
+        postal = changeCase(postal);
+
+        // initialize bufferedreader to null
+        BufferedReader objReader = null;
+
+        try {
+            String strCurrentLine;
+
+            // read the file
+            objReader = new BufferedReader(new FileReader("/Users/daiphylee/luhnAssignment/code/postal_codes.csv"));
+
+                // conds when the user inputs 
+                while ((strCurrentLine = objReader.readLine()) != null) {
+                    
+                    // cond to make sure the postal code entered only matches wiith the first 3 characters in each line
+                    if (strCurrentLine.substring(0, 3).equals(postal)) {
+                        return true;
+                    }
+                    
+                }
+        } 
+        // catch if file not found
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        // if it doesn't match return false
+        finally {
+            try {
+                if (objReader != null){
+                    objReader.close();
+                }
+            }
+            // catch if file not found
+            catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return false;   
     }
     /**
      * @author Cynthia Lei
