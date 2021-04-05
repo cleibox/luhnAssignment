@@ -2,8 +2,15 @@
 
 
 
-import java.util.Scanner;
-// More packages may be imported in the space below
+import java.util.Scanner; // import scanner class
+
+import java.io.BufferedReader; // import buffer reader class (because scanner likes to skip lines)
+import java.io.FileReader; // import class to read files
+import java.io.IOException; // import class to handle exceptions
+
+import java.io.File; // import file class
+import java.io.FileNotFoundException; // import class to handle errors
+import java.io.PrintWriter; // import class to extend writer
 
 class CustomerSystem{
     public static void main(String[] args){
