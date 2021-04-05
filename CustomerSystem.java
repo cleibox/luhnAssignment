@@ -165,19 +165,20 @@ class CustomerSystem{
         catch (IOException e) {
             e.printStackTrace();
         }
-        // if it doesn't match return false
+        // to close reader
         finally {
             try {
                 if (objReader != null){
                     objReader.close();
                 }
             }
-            // catch if file not found
+            // for catching errors
             catch (IOException ex) {
                 ex.printStackTrace();
             }
         }
-        return false;   
+        // after everything is run and it is still running it is not a valid postal code false
+        return false;     
     }
     /**
      * @author Cynthia Lei
