@@ -130,19 +130,6 @@ class CustomerSystem{
         // if the user wants to input a new set of data, the just inputted data won't
         // be lost
     }
-	    /**
-     * @author Daiphy Lee
-     * Description : Changes whole postal code to uppercase 
-     * 
-     * @param code - postal the user enters
-     * @return the postal code as capital
-     */
-    public static String changeCase(String code){
-        String caseChanged;
-        // changes the user input into uppercase letters
-        caseChanged = code.toUpperCase();
-        return caseChanged;
-    }
     /**
      * @author Daiphy Lee
      * Description : Open & reads postal_codes.csv file and identifies if the postal code entered matchs with postal codes on file
@@ -293,5 +280,18 @@ class CustomerSystem{
             }
         }
         return true; // every character is a number
+    }
+     /**
+     * @author Daiphy Lee
+     * Description : Changes whole postal code to uppercase 
+     * 
+     * @param code - postal the user enters
+     * @return the postal code as capital
+     */
+    public static String changeCase(String code){
+        String caseChanged;
+        // changes the user input into uppercase letters
+        caseChanged = code.toUpperCase();
+        return caseChanged;
     }
 }
