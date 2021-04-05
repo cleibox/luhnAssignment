@@ -137,51 +137,51 @@ class CustomerSystem{
         // string data type to integer so there will be an issue if the original string
         // is not a numerical value
         try {
-        // sum1 and sum2 -----------------------------------------------------------
-        int sum1 = 0;
-        int sum2 = 0;
+            // sum1 and sum2 -----------------------------------------------------------
+            int sum1 = 0;
+            int sum2 = 0;
 
-        for (int x = 0; x < len; x++) {
-            if (x % 2 == 0) {
-                // every ODD digit
-                //System.out.println(link.charAt(x));
-                String digit = Character.toString(link.charAt(x)); // character to string
-                sum1 += Integer.parseInt(digit); // string to int
-            }
-            // every EVEN digit
-            else {
-                int digit = Integer.parseInt(Character.toString(link.charAt(x)));
-                int doubleDigit = digit*2;
-                //System.out.println(digit*2);
-                
-                if (doubleDigit > 9) {
-                    int doubleDigitSum = 0;
-                    
-                    // Sum of the digits
-                    while(doubleDigit > 0) {
-                        int remainder = doubleDigit % 10; // Get the ones place value
-                        doubleDigitSum = doubleDigitSum + remainder;
-                        doubleDigit = doubleDigit/10; // Get tens value
-                    } 
-                    sum2 += doubleDigitSum;
+            for (int x = 0; x < len; x++) {
+                if (x % 2 == 0) {
+                    // every ODD digit
+                    //System.out.println(link.charAt(x));
+                    String digit = Character.toString(link.charAt(x)); // character to string
+                    sum1 += Integer.parseInt(digit); // string to int
                 }
+                // every EVEN digit
                 else {
-                    sum2 += doubleDigit;
+                    int digit = Integer.parseInt(Character.toString(link.charAt(x)));
+                    int doubleDigit = digit*2;
+                    //System.out.println(digit*2);
+                    
+                    if (doubleDigit > 9) {
+                        int doubleDigitSum = 0;
+                        
+                        // Sum of the digits
+                        while(doubleDigit > 0) {
+                            int remainder = doubleDigit % 10; // Get the ones place value
+                            doubleDigitSum = doubleDigitSum + remainder;
+                            doubleDigit = doubleDigit/10; // Get tens value
+                        } 
+                        sum2 += doubleDigitSum;
+                    }
+                    else {
+                        sum2 += doubleDigit;
+                    }
                 }
             }
-        }
-        // ------------------------------------------------------------------------
+            // ------------------------------------------------------------------------
 
-        // Credit Card Validitiy --------------------------------------------------
-        int sumTotal = sum1 + sum2;
+            // Credit Card Validitiy --------------------------------------------------
+            int sumTotal = sum1 + sum2;
 
-        if (sumTotal % 10 == 0){
-            return true; // valid credit card
-        }
-        else {
-            return false; // invalid credit card
-        }
-        // ------------------------------------------------------------------------
+            if (sumTotal % 10 == 0){
+                return true; // valid credit card
+            }
+            else {
+                return false; // invalid credit card
+            }
+            // ------------------------------------------------------------------------
 
         }
         catch (java.lang.NumberFormatException e) {
