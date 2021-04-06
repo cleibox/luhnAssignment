@@ -94,11 +94,13 @@ class CustomerSystem{
         // if the user wants to input a new set of data, the just inputted data won't
         // be lost
     }
-    /*
-    * This method may be edited to achieve the task however you like.
-    * The method may not nesessarily be a void return type
-    * This method may also be broken down further depending on your algorithm
-    */
+    /**
+     * @author Daiphy Lee
+     * Description : Open & reads postal_codes.csv file and identifies if the postal code entered matchs with postal codes on file
+     * 
+     * @param postalCode - 3 character code the user enters
+     * @return true, false
+     */
     public static void validatePostalCode(){
     }
     /*
