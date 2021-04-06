@@ -166,7 +166,7 @@ class CustomerSystem{
         }
         // after everything is run and it is still running it is not a valid postal code false
         return false;    
-
+    }
     /**
      * @author Cynthia Lei
      * Check if the inputted credit card is valid
