@@ -81,11 +81,13 @@ class CustomerSystem{
     */
     public static void validatePostalCode(){
     }
-    /*
-    * This method may be edited to achieve the task however you like.
-    * The method may not nesessarily be a void return type
-    * This method may also be broken down further depending on your algorithm
-    */
+    /**
+     * @author Cynthia Lei
+     * Check if the inputted credit card is valid
+     * 
+     * @param credit the inputted credit card value
+     * @return true if credit number is valid, otherwise false
+     */
     public static boolean validateCreditCard(String credit){
         // Reversing the string --------------------------------------------------
         String link = ""; // this helps link all the characters together
