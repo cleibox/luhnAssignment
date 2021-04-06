@@ -11,7 +11,6 @@ import java.io.File; // import file class
 import java.io.FileNotFoundException; // import class to handle errors
 import java.io.PrintWriter; // import class to extend writer
 
-
 class CustomerSystem{
     public static void main(String[] args){
         // Please do not edit any of these variables
@@ -55,17 +54,12 @@ class CustomerSystem{
         .concat("Enter menu option (1-9)\n")
         );
     }
-    /*
-    * This method may be edited to achieve the task however you like.
-    * The method may not nesessarily be a void return type
-    * This method may also be broken down further depending on your algorithm
-    */
+    
     /**
      * @author Daiphy Lee
      * Enter customer information
      * 
      * @param reader scanner for user input; saves the hassle of reinitializing
-     * @param ID a unique customer ID per visit
      * @return the user's inputted name, city, postal code, credit card
      */
     public static void enterCustomerInfo(Scanner reader) {
@@ -87,6 +81,7 @@ class CustomerSystem{
 
         System.out.print("Enter your postal code: ");
         String postalCode = reader.nextLine();
+
         // while loop to ensure user enters a 3 character and valid postal code (call on vpc method)
         while ( (postalCode.length() < 3) || (validatePostalCode(postalCode) != true) ) {
             if (postalCode.length() < 3) {
@@ -100,8 +95,8 @@ class CustomerSystem{
         }
         // call on the changeCase method to change the postal code to uppercase so "l3s" is equivalent to "L3S"
         postalCode = changeCase(postalCode);
-        System.out.println("The Postal Code is stored as " + postalCode + "\n");
 
+        System.out.println("The Postal Code is stored as " + postalCode + "\n");
 
         System.out.print("Enter a valid credit card number: ");
         String creditCardNum = reader.nextLine();
@@ -171,7 +166,7 @@ class CustomerSystem{
         }
         // after everything is run and it is still running it is not a valid postal code false
         return false;    
-    }
+
     /**
      * @author Cynthia Lei
      * Check if the inputted credit card is valid
@@ -252,10 +247,13 @@ class CustomerSystem{
     * This method may also be broken down further depending on your algorithm
     */
     public static void generateCustomerDataFile(){
+
     }
-        /*******************************************************************
+
+    /*******************************************************************
     *       ADDITIONAL METHODS MAY BE ADDED BELOW IF NECESSARY         *
     *******************************************************************/
+
     /**
      * @author Cynthia Lei
      * Checks if the string (credit number) consists of all numerical values
@@ -274,7 +272,7 @@ class CustomerSystem{
         }
         return true; // every character is a number
     }
-    /**
+     /**
      * @author Daiphy Lee
      * Description : Changes whole postal code to uppercase 
      * 
