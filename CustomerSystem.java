@@ -153,7 +153,7 @@ class CustomerSystem{
                     }      
                 }
         }
-        // catch if file not found
+        // catch when file not found
         catch (IOException e) {
             e.printStackTrace();
         }
