@@ -3,14 +3,6 @@
 
 
 import java.util.Scanner;
-import java.io.BufferedReader; // import buffer reader class (because scanner likes to skip lines)
-import java.io.FileReader; // import class to read files
-import java.io.IOException; // import class to handle exceptions
-
-import java.io.File; // import file class
-import java.io.FileNotFoundException; // import class to handle errors
-import java.io.PrintWriter; // import class to extend writer
-
 
 class CustomerSystem{
     public static void main(String[] args){
@@ -66,7 +58,6 @@ class CustomerSystem{
      * Enter customer information
      * 
      * @param reader scanner for user input; saves the hassle of reinitializing
-     * @param ID a unique customer ID per visit
      * @return the user's inputted name, city, postal code, credit card
      */
     public static void enterCustomerInfo(Scanner reader) {
@@ -99,7 +90,7 @@ class CustomerSystem{
         // if the user wants to input a new set of data, the just inputted data won't
         // be lost
     }
-    public static void validatePostalCode){
+    public static void validatePostalCode(){
     }
     /*
     * This method may be edited to achieve the task however you like.
@@ -114,6 +105,7 @@ class CustomerSystem{
     * This method may also be broken down further depending on your algorithm
     */
     public static void generateCustomerDataFile(){
+
     }
 
 }
