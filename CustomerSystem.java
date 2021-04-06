@@ -31,7 +31,7 @@ class CustomerSystem{
             if (userInput.equals(enterCustomerOption)){
                 // Only the line below may be editted based on the parameter list and how you design the method return
 		        // Any necessary variables may be added to this if section, but nowhere else in the code
-                enterCustomerInfo();
+                enterCustomerInfo(reader);
             }
             else if (userInput.equals(generateCustomerOption)) {
                 // Only the line below may be editted based on the parameter list and how you design the method return
@@ -69,13 +69,9 @@ class CustomerSystem{
      * @param ID a unique customer ID per visit
      * @return the user's inputted name, city, postal code, credit card
      */
-    public static void enterCustomerInfo(Scanner reader, int ID) {
+    public static void enterCustomerInfo(Scanner reader) {
         System.out.println("\nEnter the customer info method");
 
-        ID += 1;
-
-        System.out.println("customerID: " + ID);
-        
         // prompt reader to enter first name, last name, city, postal code, and credit card num
 
         System.out.print("Enter your first name: ");
