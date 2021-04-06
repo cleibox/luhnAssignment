@@ -265,9 +265,7 @@ class CustomerSystem{
      * @param read scanner used for user input
      */
     public static void generateCustomerDataFile(String storage, Scanner read){
-        System.out.println("***start");
-        System.out.println(storage);
-        System.out.println("*****end");
+        // System.out.println(storage);
 
         // Custom file name
         System.out.print("Enter file name: ");
