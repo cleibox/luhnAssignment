@@ -3,14 +3,6 @@
 
 
 import java.util.Scanner;
-import java.io.BufferedReader; // import buffer reader class (because scanner likes to skip lines)
-import java.io.FileReader; // import class to read files
-import java.io.IOException; // import class to handle exceptions
-
-import java.io.File; // import file class
-import java.io.FileNotFoundException; // import class to handle errors
-import java.io.PrintWriter; // import class to extend writer
-
 
 class CustomerSystem{
     public static void main(String[] args){
@@ -55,17 +47,12 @@ class CustomerSystem{
         .concat("Enter menu option (1-9)\n")
         );
     }
-    /*
-    * This method may be edited to achieve the task however you like.
-    * The method may not nesessarily be a void return type
-    * This method may also be broken down further depending on your algorithm
-    */
+    
     /**
      * @author Daiphy Lee
      * Enter customer information
      * 
      * @param reader scanner for user input; saves the hassle of reinitializing
-     * @param ID a unique customer ID per visit
      * @return the user's inputted name, city, postal code, credit card
      */
     public static void enterCustomerInfo(Scanner reader) {
@@ -87,6 +74,7 @@ class CustomerSystem{
 
         System.out.print("Enter your postal code: ");
         String postalCode = reader.nextLine();
+
         // while loop to ensure user enters a 3 character and valid postal code (call on vpc method)
         while ( (postalCode.length() < 3) || (validatePostalCode(postalCode) != true) ) {
             if (postalCode.length() < 3) {
@@ -100,8 +88,8 @@ class CustomerSystem{
         }
         // call on the changeCase method to change the postal code to uppercase so "l3s" is equivalent to "L3S"
         postalCode = changeCase(postalCode);
-        System.out.println("The Postal Code is stored as " + postalCode + "\n");
 
+        System.out.println("The Postal Code is stored as " + postalCode + "\n");
 
         System.out.print("Enter a valid credit card number: ");
         String creditCardNum = reader.nextLine();
@@ -126,51 +114,8 @@ class CustomerSystem{
         // if the user wants to input a new set of data, the just inputted data won't
         // be lost
     }
-    /**
-     * @author Daiphy Lee
-     * Description : Open & reads postal_codes.csv file and identifies if the postal code entered matchs with postal codes on file
-     * 
-     * @param postalCode - 3 character code the user enters
-     * @return true, false
-     */
-    public static boolean validatePostalCode(String postal){
-
-        // call on the changeCase method to change the postal code to uppercase so "l3s" is equivalent to "L3S"
-        postal = changeCase(postal);
-
-        // initialize bufferedreader to null
-        BufferedReader objReader = null;
-
-        try {
-            String strCurrentLine;
-            // read the file
-            objReader = new BufferedReader(new FileReader("/Users/daiphylee/luhnAssignment/code/postal_codes.csv"));
-                // conds when the user inputs 
-                while ((strCurrentLine = objReader.readLine()) != null) {  
-                    // condS to make sure the postal code entered only matches wiith the first 3 characters in each line
-                    if (strCurrentLine.substring(0, 3).equals(postal)) {
-                        return true;
-                    }      
-                }
-        }
-        // catch if file not found
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-        // to close reader
-        finally {
-            try {
-                if (objReader != null){
-                    objReader.close();
-                }
-            }
-            // for catching errors
-            catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-        // after everything is run and it is still running it is not a valid postal code false
-        return false;    
+  
+    public static void validatePostalCode(){
     }
     /**
      * @author Cynthia Lei
@@ -252,10 +197,13 @@ class CustomerSystem{
     * This method may also be broken down further depending on your algorithm
     */
     public static void generateCustomerDataFile(){
+
     }
-        /*******************************************************************
+
+    /*******************************************************************
     *       ADDITIONAL METHODS MAY BE ADDED BELOW IF NECESSARY         *
     *******************************************************************/
+
     /**
      * @author Cynthia Lei
      * Checks if the string (credit number) consists of all numerical values
@@ -274,7 +222,7 @@ class CustomerSystem{
         }
         return true; // every character is a number
     }
-    /**
+     /**
      * @author Daiphy Lee
      * Description : Changes whole postal code to uppercase 
      * 
