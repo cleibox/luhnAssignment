@@ -54,7 +54,16 @@ class CustomerSystem{
     * The method may not nesessarily be a void return type
     * This method may also be broken down further depending on your algorithm
     */
+    /**
+     * @author Daiphy Lee
+     * Enter customer information
+     * 
+     * @param reader scanner for user input; saves the hassle of reinitializing
+     * @param ID a unique customer ID per visit
+     * @return the user's inputted name, city, postal code, credit card
+     */
     public static void enterCustomerInfo() {
+
     }
     /*
     * This method may be edited to achieve the task however you like.
