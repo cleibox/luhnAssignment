@@ -8,7 +8,6 @@ import java.io.FileReader; // import class to read files
 import java.io.IOException; // import class to handle exceptions
 
 import java.io.File; // import file class
-import java.io.FileNotFoundException; // import class to handle errors
 import java.io.PrintWriter; // import class to extend writer 
 
 import java.io.*; // for generating the data file (reading, writing data)
@@ -38,7 +37,7 @@ class CustomerSystem{
             else if (userInput.equals(generateCustomerOption)) {
                 // Only the line below may be editted based on the parameter list and how you design the method return
                 generateCustomerDataFile(fileStorage, reader);
-                fileStorage = ""; // refresh so that if the user inputs one customer and just keeps on generate a datafile,
+                fileStorage = ""; // refresh so that if the user inputs one customer and just keeps on generating a datafile,
                 // this will prevent the file from duplicating that customer's data
             }
             else{
@@ -264,9 +263,8 @@ class CustomerSystem{
      * 
      * @param storage this contains all of the stored customer informations
      * @param read scanner used for user input
-     * @return 
      */
-    public static String generateCustomerDataFile(String storage, Scanner read){
+    public static void generateCustomerDataFile(String storage, Scanner read){
         System.out.println("***start");
         System.out.println(storage);
         System.out.println("*****end");
@@ -275,10 +273,10 @@ class CustomerSystem{
         System.out.print("Enter file name: ");
         String fileName = read.nextLine();
 
-        char slash = "\\".charAt(0); // this is so I can output \ 
+        char slash = "\\".charAt(0); // this is so I can output \ without vscode freaking out
         // Prompt user to input custome file location
-        System.out.print("Enter file location (ex: '/Users/cynthia/Downloads/' or 'C:" + slash + "Users" + slash + "Steve" + slash + "Desktop" + slash + "'): ");
-        System.out.print("\nIf you input nothing, the data file will be found in the same folder as this program.");
+        System.out.print("If you input nothing, the data file will be found in the same folder as this program.");
+        System.out.print("\nEnter file location (ex: '/Users/cynthia/Downloads/' or 'C:" + slash + "Users" + slash + "Steve" + slash + "Desktop" + slash + "'): ");
         String fileLocation = read.nextLine();
         // String fileLocation = "/Users/cynthia/Downloads/";
 
@@ -289,11 +287,11 @@ class CustomerSystem{
             // Adding lines ------------------------------------------
             // File doesn't exist
             if (!file.exists()) {
-                System.out.println("File doesn't exist so we will create a new one for you.");
+                // System.out.println("File doesn't exist so we will create a new one for you.");
                 file.createNewFile();
             }
             
-            System.out.println("\nFile exists.");
+            // System.out.println("\nFile exists.");
             
             // True allows content to be appended to the file
             FileWriter fw = new FileWriter(file, true);
@@ -306,15 +304,11 @@ class CustomerSystem{
             pw.close();
             // ------------------------------------------------------
         }
-        catch (FileNotFoundException e){
-            System.out.println(e); // no file
-        }
         catch (IOException e){
-            System.out.println(e); // input output issue
+            System.out.println(e); // input/output issue
+            System.out.println("You inputted a nonexistent file path ...");
         }
 
-        System.out.println("Data successfully appended at the end of file");
-        return fileName;
     }
 
     /*******************************************************************
