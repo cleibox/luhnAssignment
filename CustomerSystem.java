@@ -69,12 +69,8 @@ class CustomerSystem{
      * @param ID a unique customer ID per visit
      * @return the user's inputted name, city, postal code, credit card
      */
-    public static void enterCustomerInfo(Scanner reader, int ID) {
+    public static void enterCustomerInfo(Scanner reader) {
         System.out.println("\nEnter the customer info method");
-
-        ID += 1;
-
-        System.out.println("customerID: " + ID);
         
         // prompt reader to enter first name, last name, city, postal code, and credit card num
 
@@ -92,19 +88,6 @@ class CustomerSystem{
 
         System.out.print("Enter your postal code: ");
         String postalCode = reader.nextLine();
-        // while loop to ensure user enters a 3 character and valid postal code
-        while ( (postalCode.length() < 3) || (validatePostalCode(postalCode) != true) ) {
-            if (postalCode.length() < 3) {
-                System.out.println("Please enter AT LEAST 3 characters");
-            }
-            if (validatePostalCode(postalCode) != true) {
-                System.out.println("Please enter a VALID postal code");
-            }
-            // cond if not valid or 3 characters - then they can redo
-            postalCode = reader.nextLine();
-        }
-        // call on the changeCase method to change the postal code to uppercase so "l3s" is equivalent to "L3S"
-        postalCode = changeCase(postalCode);
         System.out.println("The Postal Code is stored as " + postalCode + "\n");
 
 
@@ -116,51 +99,7 @@ class CustomerSystem{
         // if the user wants to input a new set of data, the just inputted data won't
         // be lost
     }
-    /**
-     * @author Daiphy Lee
-     * Description : Open & reads postal_codes.csv file and identifies if the postal code entered matchs with postal codes on file
-     * 
-     * @param postalCode - 3 character code the user enters
-     * @return true, false
-     */
-    public static boolean validatePostalCode(String postal){
-
-        // call on the changeCase method to change the postal code to uppercase so "l3s" is equivalent to "L3S"
-        postal = changeCase(postal);
-
-        // initialize bufferedreader to null
-        BufferedReader objReader = null;
-
-        try {
-            String strCurrentLine;
-            // read the file
-            objReader = new BufferedReader(new FileReader("/Users/daiphylee/luhnAssignment/code/postal_codes.csv"));
-                // conds when the user inputs 
-                while ((strCurrentLine = objReader.readLine()) != null) {  
-                    // condS to make sure the postal code entered only matches wiith the first 3 characters in each line
-                    if (strCurrentLine.substring(0, 3).equals(postal)) {
-                        return true;
-                    }      
-                }
-        }
-        // catch if file not found
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-        // to close reader
-        finally {
-            try {
-                if (objReader != null){
-                    objReader.close();
-                }
-            }
-            // for catching errors
-            catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-        // after everything is run and it is still running it is not a valid postal code false
-        return false;    
+    public static void validatePostalCode){
     }
     /*
     * This method may be edited to achieve the task however you like.
@@ -176,17 +115,5 @@ class CustomerSystem{
     */
     public static void generateCustomerDataFile(){
     }
-    /**
-     * @author Daiphy Lee
-     * Description : Changes whole postal code to uppercase 
-     * 
-     * @param code - postal the user enters
-     * @return the postal code as capital
-     */
-    public static String changeCase(String code){
-        String caseChanged;
-        // changes the user input into uppercase letters
-        caseChanged = code.toUpperCase();
-        return caseChanged;
-    }
+
 }
