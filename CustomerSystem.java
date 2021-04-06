@@ -15,7 +15,6 @@ class CustomerSystem{
 
         // More variables for the main may be declared in the space below
 
-
         do{
             printMenu();                                    // Printing out the main menu
             userInput = reader.nextLine();                  // User selection from the menu
@@ -58,7 +57,7 @@ class CustomerSystem{
      */
     public static void enterCustomerInfo(Scanner reader) {
         System.out.println("\nEnter the customer info method");
-        
+
         // prompt reader to enter first name, last name, city, postal code, and credit card num
 
         System.out.print("Enter your first name: ");
@@ -75,6 +74,21 @@ class CustomerSystem{
 
         System.out.print("Enter your postal code: ");
         String postalCode = reader.nextLine();
+
+        // while loop to ensure user enters a 3 character and valid postal code (call on vpc method)
+        while ( (postalCode.length() < 3) || (validatePostalCode(postalCode) != true) ) {
+            if (postalCode.length() < 3) {
+                System.out.println("Please enter AT LEAST 3 characters");
+            }
+            if (validatePostalCode(postalCode) != true) {
+                System.out.println("Please enter a VALID postal code");
+            }
+            // cond if not valid or 3 characters - then they can redo
+            postalCode = reader.nextLine();
+        }
+        // call on the changeCase method to change the postal code to uppercase so "l3s" is equivalent to "L3S"
+        postalCode = changeCase(postalCode);
+
         System.out.println("The Postal Code is stored as " + postalCode + "\n");
 
         System.out.print("Enter a valid credit card number: ");
@@ -189,6 +203,7 @@ class CustomerSystem{
     /*******************************************************************
     *       ADDITIONAL METHODS MAY BE ADDED BELOW IF NECESSARY         *
     *******************************************************************/
+
     /**
      * @author Cynthia Lei
      * Checks if the string (credit number) consists of all numerical values
@@ -206,5 +221,18 @@ class CustomerSystem{
             }
         }
         return true; // every character is a number
+    }
+     /**
+     * @author Daiphy Lee
+     * Description : Changes whole postal code to uppercase 
+     * 
+     * @param code - postal the user enters
+     * @return the postal code as capital
+     */
+    public static String changeCase(String code){
+        String caseChanged;
+        // changes the user input into uppercase letters
+        caseChanged = code.toUpperCase();
+        return caseChanged;
     }
 }
