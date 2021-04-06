@@ -57,9 +57,13 @@ class CustomerSystem{
     public static void enterCustomerInfo(Scanner reader) {
         System.out.print("Enter a valid credit card number: ");
         String creditCardNum = reader.nextLine();
-        while ( (creditCardNum.length() < 9) ) {
+        while ( (creditCardNum.length() < 9) 
+            || (isStringAllNum(creditCardNum) != true) ) {
             if (creditCardNum.length() < 9) {
                 System.out.println("Please enter AT LEAST 9 digits");
+            }
+            if (isStringAllNum(creditCardNum) != true) {
+                System.out.println("Please enter ONLY NUMBERS (no spaces, hypens)");
             }
             creditCardNum = reader.nextLine(); // reinput
         }
@@ -89,4 +93,22 @@ class CustomerSystem{
     /*******************************************************************
     *       ADDITIONAL METHODS MAY BE ADDED BELOW IF NECESSARY         *
     *******************************************************************/
+    /**
+     * @author Cynthia Lei
+     * Checks if the string (credit number) consists of all numerical values
+     * 
+     * @param str user inputted String credit number
+     * @return true if it contains all numerical values, otherwise false
+     */
+    public static boolean isStringAllNum (String str) {
+        // Checks if the credit card number string input consists of all numerical values
+        int len = str.length();
+        for (int i = 0; i < len; i++) {
+            // Interrupts the for loop the moment it hits a non-numerical character
+            if (!Character.isDigit(str.charAt(i))) { 
+                return false;
+            }
+        }
+        return true; // every character is a number
+    }
 }
