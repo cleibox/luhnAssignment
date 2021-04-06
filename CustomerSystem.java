@@ -57,6 +57,12 @@ class CustomerSystem{
     public static void enterCustomerInfo(Scanner reader) {
         System.out.print("Enter a valid credit card number: ");
         String creditCardNum = reader.nextLine();
+        while ( (creditCardNum.length() < 9) ) {
+            if (creditCardNum.length() < 9) {
+                System.out.println("Please enter AT LEAST 9 digits");
+            }
+            creditCardNum = reader.nextLine(); // reinput
+        }
         System.out.println("creditCardNum is stored as " + creditCardNum + "\n");
     }
     /*
