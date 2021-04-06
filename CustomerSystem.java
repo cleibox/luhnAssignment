@@ -62,8 +62,37 @@ class CustomerSystem{
      * @param ID a unique customer ID per visit
      * @return the user's inputted name, city, postal code, credit card
      */
-    public static void enterCustomerInfo() {
+    public static void enterCustomerInfo(Scanner reader, int ID) {
+        System.out.println("\nEnter the customer info method");
 
+        ID += 1;
+
+        System.out.println("customerID: " + ID);
+        
+        System.out.print("Enter your first name: ");
+        String firstName = reader.nextLine();
+        System.out.println("The first name is stored as " + firstName + "\n");
+        
+        System.out.print("Enter your last name: ");
+        String lastName = reader.nextLine();
+        System.out.println("The last name is stored as " + lastName + "\n");
+        
+        System.out.print("Enter your city: ");
+        String city = reader.nextLine();
+    	System.out.println("The city is stored as " + city + "\n");
+
+        System.out.print("Enter your postal code: ");
+        String postalCode = reader.nextLine();
+        System.out.println("The Postal Code is stored as " + postalCode + "\n");
+
+
+        System.out.print("Enter a valid credit card number: ");
+        String creditCardNum = reader.nextLine();
+        System.out.println("The Credit Card Number is stored as " + creditCardNum + "\n");
+
+        // must call generateCustomerDataFile after all user input is done so that
+        // if the user wants to input a new set of data, the just inputted data won't
+        // be lost
     }
     /*
     * This method may be edited to achieve the task however you like.
