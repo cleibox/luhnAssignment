@@ -3,7 +3,14 @@
 
 
 import java.util.Scanner;
-// More packages may be imported in the space below
+import java.io.BufferedReader; // import buffer reader class (because scanner likes to skip lines)
+import java.io.FileReader; // import class to read files
+import java.io.IOException; // import class to handle exceptions
+
+import java.io.File; // import file class
+import java.io.FileNotFoundException; // import class to handle errors
+import java.io.PrintWriter; // import class to extend writer
+
 
 class CustomerSystem{
     public static void main(String[] args){
@@ -101,7 +108,41 @@ class CustomerSystem{
      * @param postalCode - 3 character code the user enters
      * @return true, false
      */
-    public static void validatePostalCode(){
+    public static boolean validatePostalCode(String postal){
+
+        // initialize bufferedreader to null
+        BufferedReader objReader = null;
+
+        try {
+            String strCurrentLine;
+            // read the file
+            objReader = new BufferedReader(new FileReader("/Users/daiphylee/luhnAssignment/code/postal_codes.csv"));
+                // conds when the user inputs 
+                while ((strCurrentLine = objReader.readLine()) != null) {  
+                    // condS to make sure the postal code entered only matches wiith the first 3 characters in each line
+                    if (strCurrentLine.substring(0, 3).equals(postal)) {
+                        return true;
+                    }      
+                }
+        }
+        // catch if file not found
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        // to close reader
+        finally {
+            try {
+                if (objReader != null){
+                    objReader.close();
+                }
+            }
+            // for catching errors
+            catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        // after everything is run and it is still running it is not a valid postal code false
+        return false;    
     }
     /*
     * This method may be edited to achieve the task however you like.
