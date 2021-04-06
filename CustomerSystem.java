@@ -76,6 +76,8 @@ class CustomerSystem{
 
         System.out.println("customerID: " + ID);
         
+        // prompt reader to enter first name, last name, city, postal code, and credit card num
+
         System.out.print("Enter your first name: ");
         String firstName = reader.nextLine();
         System.out.println("The first name is stored as " + firstName + "\n");
@@ -90,6 +92,8 @@ class CustomerSystem{
 
         System.out.print("Enter your postal code: ");
         String postalCode = reader.nextLine();
+        // call on the changeCase method to change the postal code to uppercase so "l3s" is equivalent to "L3S"
+        postalCode = changeCase(postalCode);
         System.out.println("The Postal Code is stored as " + postalCode + "\n");
 
 
@@ -109,6 +113,9 @@ class CustomerSystem{
      * @return true, false
      */
     public static boolean validatePostalCode(String postal){
+
+        // call on the changeCase method to change the postal code to uppercase so "l3s" is equivalent to "L3S"
+        postal = changeCase(postal);
 
         // initialize bufferedreader to null
         BufferedReader objReader = null;
@@ -158,7 +165,17 @@ class CustomerSystem{
     */
     public static void generateCustomerDataFile(){
     }
-    /*******************************************************************
-    *       ADDITIONAL METHODS MAY BE ADDED BELOW IF NECESSARY         *
-    *******************************************************************/
+    /**
+     * @author Daiphy Lee
+     * Description : Changes whole postal code to uppercase 
+     * 
+     * @param code - postal the user enters
+     * @return the postal code as capital
+     */
+    public static String changeCase(String code){
+        String caseChanged;
+        // changes the user input into uppercase letters
+        caseChanged = code.toUpperCase();
+        return caseChanged;
+    }
 }
