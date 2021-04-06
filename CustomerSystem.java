@@ -92,7 +92,7 @@ class CustomerSystem{
 
         System.out.print("Enter your postal code: ");
         String postalCode = reader.nextLine();
-        // while loop to ensure user enters a 3 character and valid postal code
+        // while loop to ensure user enters a 3 character and valid postal code (call on vpc method)
         while ( (postalCode.length() < 3) || (validatePostalCode(postalCode) != true) ) {
             if (postalCode.length() < 3) {
                 System.out.println("Please enter AT LEAST 3 characters");
