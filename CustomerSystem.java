@@ -3,7 +3,6 @@
 
 
 import java.util.Scanner;
-// More packages may be imported in the space below
 
 class CustomerSystem{
     public static void main(String[] args){
@@ -49,12 +48,35 @@ class CustomerSystem{
         .concat("Enter menu option (1-9)\n")
         );
     }
-    /*
-    * This method may be edited to achieve the task however you like.
-    * The method may not nesessarily be a void return type
-    * This method may also be broken down further depending on your algorithm
-    */
+    
+    /**
+     * @author Daiphy Lee
+     * Enter customer information
+     * 
+     * @param reader scanner for user input; saves the hassle of reinitializing
+     * @return the user's inputted name, city, postal code, credit card
+     */
     public static void enterCustomerInfo(Scanner reader) {
+        System.out.println("\nEnter the customer info method");
+        
+        // prompt reader to enter first name, last name, city, postal code, and credit card num
+
+        System.out.print("Enter your first name: ");
+        String firstName = reader.nextLine();
+        System.out.println("The first name is stored as " + firstName + "\n");
+        
+        System.out.print("Enter your last name: ");
+        String lastName = reader.nextLine();
+        System.out.println("The last name is stored as " + lastName + "\n");
+        
+        System.out.print("Enter your city: ");
+        String city = reader.nextLine();
+    	System.out.println("The city is stored as " + city + "\n");
+
+        System.out.print("Enter your postal code: ");
+        String postalCode = reader.nextLine();
+        System.out.println("The Postal Code is stored as " + postalCode + "\n");
+
         System.out.print("Enter a valid credit card number: ");
         String creditCardNum = reader.nextLine();
         while ( (creditCardNum.length() < 9) 
@@ -73,12 +95,12 @@ class CustomerSystem{
             creditCardNum = reader.nextLine(); // reinput
         }
         System.out.println("creditCardNum is stored as " + creditCardNum + "\n");
+  
+        // must call generateCustomerDataFile after all user input is done so that
+        // if the user wants to input a new set of data, the just inputted data won't
+        // be lost
     }
-    /*
-    * This method may be edited to achieve the task however you like.
-    * The method may not nesessarily be a void return type
-    * This method may also be broken down further depending on your algorithm
-    */
+  
     public static void validatePostalCode(){
     }
     /**
@@ -161,7 +183,9 @@ class CustomerSystem{
     * This method may also be broken down further depending on your algorithm
     */
     public static void generateCustomerDataFile(){
+
     }
+
     /*******************************************************************
     *       ADDITIONAL METHODS MAY BE ADDED BELOW IF NECESSARY         *
     *******************************************************************/
