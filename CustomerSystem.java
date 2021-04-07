@@ -1,8 +1,11 @@
-// Throughout this project, the use of data structures are not permitted such as methods like .split and .toCharArray
+/* 
+* Name : Cynthia Lei & Daiphy Lee
+* Date : April 6, 2021
+* Teacher : Mr. Ho
+* Description : LuhnAssignment
+* */
 
-
-
-import java.util.Scanner;
+import java.util.Scanner; // import scanner class
 import java.io.BufferedReader; // import buffer reader class (because scanner likes to skip lines)
 import java.io.FileReader; // import class to read files
 import java.io.IOException; // import class to handle exceptions
@@ -11,6 +14,8 @@ import java.io.File; // import file class
 import java.io.PrintWriter; // import class to extend writer 
 
 import java.io.*; // for generating the data file (reading, writing data)
+
+import java.sql.Timestamp; // timestamp class to generate exact time
 
 class CustomerSystem{
     public static void main(String[] args){
@@ -65,7 +70,7 @@ class CustomerSystem{
      * Enter customer information
      * 
      * @param reader scanner for user input; saves the hassle of reinitializing
-     * @return the user's inputted name, city, postal code, credit card
+     * @return the user's inputted first name, last name, city, postal code, credit card
      */
     public static String enterCustomerInfo(Scanner reader, String storage) {
         System.out.println("\nEnter the customer info method");
@@ -74,15 +79,12 @@ class CustomerSystem{
 
         System.out.print("Enter your first name: ");
         String firstName = reader.nextLine();
-        System.out.println("The first name is stored as " + firstName + "\n");
         
         System.out.print("Enter your last name: ");
         String lastName = reader.nextLine();
-        System.out.println("The last name is stored as " + lastName + "\n");
         
         System.out.print("Enter your city: ");
         String city = reader.nextLine();
-    	System.out.println("The city is stored as " + city + "\n");
 
         System.out.print("Enter your postal code: ");
         String postalCode = reader.nextLine();
@@ -100,8 +102,6 @@ class CustomerSystem{
         }
         // call on the changeCase method to change the postal code to uppercase so "l3s" is equivalent to "L3S"
         postalCode = changeCase(postalCode);
-
-        System.out.println("The Postal Code is stored as " + postalCode + "\n");
 
         // Credit card input
         System.out.print("Enter a valid credit card number: ");
@@ -126,11 +126,10 @@ class CustomerSystem{
             }
             creditCardNum = reader.nextLine(); // reinput
         }
-        System.out.println("creditCardNum is stored as " + creditCardNum + "\n");
   
         // this stores each customer's inputted file 
         // this adds on so the user can input multiple customers' info before generating a data file
-        storage += "," + firstName + "," + lastName + "," + city + "," + postalCode + "," + creditCardNum + "\n"; //daiphy add id here
+        storage += "1"+getTimestamp() + "," + firstName + "," + lastName + "," + city + "," + postalCode + "," + creditCardNum + "\n"; //daiphy add id here
         return storage;
     }
     /**
@@ -138,7 +137,8 @@ class CustomerSystem{
      * Description : Open & reads postal_codes.csv file and identifies if the postal code entered matchs with postal codes on file
      * 
      * @param postalCode - 3 character code the user enters
-     * @return true, false
+     * @return true - 3 character code the user enters is a valid postal code on the list provided
+     * @return false - the postal code inputted is less than 3 characters long OR if postal code is not part of the list provided
      */
     public static boolean validatePostalCode(String postal){
 
@@ -162,7 +162,7 @@ class CustomerSystem{
         }
         // catch when file not found
         catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Postal Code File not found.");
         }
         catch (java.lang.StringIndexOutOfBoundsException e) {
             // System.out.println("Postal code too short");
@@ -336,12 +336,23 @@ class CustomerSystem{
      * Description : Changes whole postal code to uppercase 
      * 
      * @param code - postal the user enters
-     * @return the postal code as capital
+     * @return the postal code in capital letter
      */
     public static String changeCase(String code){
         String caseChanged;
         // changes the user input into uppercase letters
         caseChanged = code.toUpperCase();
         return caseChanged;
+    }
+    /**
+     * @author Daiphy Lee
+     * Description : Generates unique customer ID to match timestamp
+     * 
+     * @return the time stamp for the customer ID number
+     */
+    public static long getTimestamp(){
+        // timestamp for customer ID number
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        return timestamp.getTime();
     }
 }
