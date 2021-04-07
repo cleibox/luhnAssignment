@@ -8,9 +8,9 @@ import java.io.FileReader; // import class to read files
 import java.io.IOException; // import class to handle exceptions
 
 import java.io.File; // import file class
-import java.io.FileNotFoundException; // import class to handle errors
-import java.io.PrintWriter; // import class to extend writer
+import java.io.PrintWriter; // import class to extend writer 
 
+import java.io.*; // for generating the data file (reading, writing data)
 
 class CustomerSystem{
     public static void main(String[] args){
@@ -22,6 +22,7 @@ class CustomerSystem{
         exitCondition = "9";
 
         // More variables for the main may be declared in the space below
+        String fileStorage = "";
 
         do{
             printMenu();                                    // Printing out the main menu
@@ -30,11 +31,14 @@ class CustomerSystem{
             if (userInput.equals(enterCustomerOption)){
                 // Only the line below may be editted based on the parameter list and how you design the method return
 		        // Any necessary variables may be added to this if section, but nowhere else in the code
-                enterCustomerInfo(reader);
+                fileStorage = enterCustomerInfo(reader, fileStorage); 
+                // after each run of inputting customer info, each customer's info is stored
             }
             else if (userInput.equals(generateCustomerOption)) {
                 // Only the line below may be editted based on the parameter list and how you design the method return
-                generateCustomerDataFile();
+                generateCustomerDataFile(fileStorage, reader);
+                fileStorage = ""; // refresh so that if the user inputs one customer and just keeps on generating a datafile,
+                // this will prevent the file from duplicating that customer's data
             }
             else{
                 System.out.println("Please type in a valid option (A number from 1-9)");
@@ -55,20 +59,15 @@ class CustomerSystem{
         .concat("Enter menu option (1-9)\n")
         );
     }
-    /*
-    * This method may be edited to achieve the task however you like.
-    * The method may not nesessarily be a void return type
-    * This method may also be broken down further depending on your algorithm
-    */
+    
     /**
      * @author Daiphy Lee
      * Enter customer information
      * 
      * @param reader scanner for user input; saves the hassle of reinitializing
-     * @param ID a unique customer ID per visit
      * @return the user's inputted name, city, postal code, credit card
      */
-    public static void enterCustomerInfo(Scanner reader) {
+    public static String enterCustomerInfo(Scanner reader, String storage) {
         System.out.println("\nEnter the customer info method");
 
         // prompt reader to enter first name, last name, city, postal code, and credit card num
@@ -87,6 +86,7 @@ class CustomerSystem{
 
         System.out.print("Enter your postal code: ");
         String postalCode = reader.nextLine();
+
         // while loop to ensure user enters a 3 character and valid postal code (call on vpc method)
         while ( (postalCode.length() < 3) || (validatePostalCode(postalCode) != true) ) {
             if (postalCode.length() < 3) {
@@ -100,21 +100,27 @@ class CustomerSystem{
         }
         // call on the changeCase method to change the postal code to uppercase so "l3s" is equivalent to "L3S"
         postalCode = changeCase(postalCode);
+
         System.out.println("The Postal Code is stored as " + postalCode + "\n");
 
-
+        // Credit card input
         System.out.print("Enter a valid credit card number: ");
         String creditCardNum = reader.nextLine();
+        // Checks to see if the inputted credit card number is valid or not
+        // If invalid, it will force user to reinput
         while ( (creditCardNum.length() < 9) 
             || (isStringAllNum(creditCardNum) != true) 
             || (validateCreditCard(creditCardNum) != true)
             ) {
+            // credit card number not at least 9 digits
             if (creditCardNum.length() < 9) {
                 System.out.println("Please enter AT LEAST 9 digits");
             }
+            // credit card number does not contain all numbers
             if (isStringAllNum(creditCardNum) != true) {
                 System.out.println("Please enter ONLY NUMBERS (no spaces, hypens)");
             }
+            // credit card number fails the luhn algorithm/test
             if (validateCreditCard(creditCardNum) != true) {
                 System.out.println("Please enter a VALID credit number");
             }
@@ -122,9 +128,10 @@ class CustomerSystem{
         }
         System.out.println("creditCardNum is stored as " + creditCardNum + "\n");
   
-        // must call generateCustomerDataFile after all user input is done so that
-        // if the user wants to input a new set of data, the just inputted data won't
-        // be lost
+        // this stores each customer's inputted file 
+        // this adds on so the user can input multiple customers' info before generating a data file
+        storage += "," + firstName + "," + lastName + "," + city + "," + postalCode + "," + creditCardNum + "\n"; //daiphy add id here
+        return storage;
     }
     /**
      * @author Daiphy Lee
@@ -144,11 +151,11 @@ class CustomerSystem{
         try {
             String strCurrentLine;
             // read the file
-            objReader = new BufferedReader(new FileReader("/Users/daiphylee/luhnAssignment/code/postal_codes.csv"));
+            objReader = new BufferedReader(new FileReader("postal_codes.csv"));
                 // conds when the user inputs 
                 while ((strCurrentLine = objReader.readLine()) != null) {  
                     // condS to make sure the postal code entered only matches wiith the first 3 characters in each line
-                    if (strCurrentLine.substring(0, 3).equals(postal)) {
+                    if (strCurrentLine.substring(0, 3).equals(postal.substring(0,3))) {
                         return true;
                     }      
                 }
@@ -156,6 +163,10 @@ class CustomerSystem{
         // catch when file not found
         catch (IOException e) {
             e.printStackTrace();
+        }
+        catch (java.lang.StringIndexOutOfBoundsException e) {
+            // System.out.println("Postal code too short");
+            return false;
         }
         // to close reader
         finally {
@@ -246,16 +257,62 @@ class CustomerSystem{
             return false; // credit number input is not all numerical values
         }
     }
-    /*
-    * This method may be edited to achieve the task however you like.
-    * The method may not nesessarily be a void return type
-    * This method may also be broken down further depending on your algorithm
-    */
-    public static void generateCustomerDataFile(){
+    /**
+     * @author Cynthia Lei
+     * Generating the customer data file
+     * 
+     * @param storage this contains all of the stored customer informations
+     * @param read scanner used for user input
+     */
+    public static void generateCustomerDataFile(String storage, Scanner read){
+        // System.out.println(storage);
+
+        // Custom file name
+        System.out.print("Enter file name: ");
+        String fileName = read.nextLine();
+
+        char slash = "\\".charAt(0); // this is so I can output \ without vscode freaking out
+        // Prompt user to input custome file location
+        System.out.print("If you input nothing, the data file will be found in the same folder as this program.");
+        System.out.print("\nEnter file location (ex: '/Users/cynthia/Downloads/' or 'C:" + slash + "Users" + slash + "Steve" + slash + "Desktop" + slash + "'): ");
+        String fileLocation = read.nextLine();
+        // String fileLocation = "/Users/cynthia/Downloads/";
+
+        // Create a file instance to reference the customer data file
+        File file = new File(fileLocation + fileName + ".csv");
+        
+        try {
+            // Adding lines ------------------------------------------
+            // File doesn't exist
+            if (!file.exists()) {
+                // System.out.println("File doesn't exist so we will create a new one for you.");
+                file.createNewFile();
+            }
+            
+            // System.out.println("\nFile exists.");
+            
+            // True allows content to be appended to the file
+            FileWriter fw = new FileWriter(file, true);
+            BufferedWriter bw = new BufferedWriter(fw); // Better performance
+            PrintWriter pw = new PrintWriter(bw); // appends line to the file
+            
+            // Add a new line of customer info to the file content
+            pw.print(storage);
+            
+            pw.close();
+            // ------------------------------------------------------
+        }
+        catch (IOException e){
+            System.out.println(e); // input/output issue
+            System.out.println("You inputted a nonexistent file path ...");
+        }
+
     }
-        /*******************************************************************
+
+    /*******************************************************************
     *       ADDITIONAL METHODS MAY BE ADDED BELOW IF NECESSARY         *
     *******************************************************************/
+
     /**
      * @author Cynthia Lei
      * Checks if the string (credit number) consists of all numerical values
@@ -274,7 +331,7 @@ class CustomerSystem{
         }
         return true; // every character is a number
     }
-    /**
+     /**
      * @author Daiphy Lee
      * Description : Changes whole postal code to uppercase 
      * 
