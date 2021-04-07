@@ -129,7 +129,7 @@ class CustomerSystem{
   
         // this stores each customer's inputted file 
         // this adds on so the user can input multiple customers' info before generating a data file
-        storage += "1"+getTimestamp() + "," + firstName + "," + lastName + "," + city + "," + postalCode + "," + creditCardNum + "\n"; //daiphy add id here
+        storage += "1"+getTimestamp() + "," + firstName + "," + lastName + "," + city + "," + postalCode + "," + creditCardNum + "\n"; 
         return storage;
     }
     /**
