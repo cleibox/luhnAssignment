@@ -100,7 +100,7 @@ class CustomerSystem{
             // cond if not valid or 3 characters - then they can redo
             postalCode = reader.nextLine();
         }
-        // call on the changeCase method to change the postal code to uppercase so "l3s" is equivalent to "L3S"
+        // call on the changeCase method to change the postal code to uppercase so "l3s" is equivalent to "L3S" when it is in the DataFiles
         postalCode = changeCase(postalCode);
 
         // Credit card input
